@@ -1,60 +1,45 @@
-// app/page.tsx
+"use client";
 
-"use client"
+import Image from "next/image";
+import React from "react";
+import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
+import Link from "next/link";
 
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card"
-
-import { useState } from 'react';
-
-export default function Home() {
-  const [comments, setComments] = useState<string[]>([]);
-  const [comment, setComment] = useState<string>('');
-
-  const addComment = () => {
-    if (comment.trim() === '') return;
-    setComments([...comments, comment]);
-    setComment('');
-  };
-
+export default function ThreeDCardDemo() {
   return (
-    <div className="flex items-center justify-center h-screen bg-slate-600">
-      <Card className="max-w-screen-md h-auto text-center bg-white rounded-lg shadow-lg">
-        <CardContent className="flex flex-col justify-between h-full">
-          <div className="mt-8">
-            <h1 className="text-4xl font-bold mb-2">Welcome to My Blog</h1>
-            <p className="text-lg mb-4">This is a dynamic blog built with Next.js 14 and TypeScript.</p>
-          </div>
-
-          {/* Comment Section */}
-          <div className="flex flex-col mt-2 h-[300px] overflow-y-auto"> {/* Fixed height and scrollable */}
-            <h2 className="text-2xl font-semibold">Comments</h2>
-            <ul className="mt-2">
-              {comments.map((cmt, index) => (
-                <li key={index} className="bg-gray-200 p-2 mt-2 rounded">
-                  {cmt}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 flex">
-              <input
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                className="border p-2 rounded w-full ml-5"
-                placeholder="Add a comment"
-              />
-              <button
-                onClick={addComment}
-                className="ml-4 bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                Add
-              </button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+    <div className=" min-h-screen">
+      <h1 className="text-center p-7 font-bold text-4xl">Milestone 3 Assignment by Ahmed Yaqoob Dhedhi </h1>
+    <CardContainer className="inter-var">
+      <CardBody className="bg-black relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+        <CardItem
+          translateZ="50"
+          className="text-xl font-bold text-neutral-600 dark:text-white"
+        >
+          Dynamic Routing Blog App 
+        </CardItem>
+        
+        <CardItem translateZ="100" className="w-full mt-4">
+          <Image
+            src="/demo.png"
+            height="1000"
+            width="1000"
+            className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+            alt="thumbnail"
+          />
+        </CardItem>
+        <div className="flex justify-between items-center mt-20">
+          <CardItem
+            translateZ={20}
+            as={Link}
+            href="/blog"
+            target="__blank"
+            className="px-4 py-2 rounded-xl text-5xl font-normal text-white dark:text-white hover:text-blue-500"
+          >
+            Try now →
+          </CardItem>
+        </div>
+      </CardBody>
+    </CardContainer>
     </div>
   );
 }
